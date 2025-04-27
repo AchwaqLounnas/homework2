@@ -6,7 +6,6 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
-const PORT = 1000;
 
 app.use(cookieParser());
 app.use(session({
@@ -23,12 +22,10 @@ const users = {
   2: { id: 2, username: 'wiener', password: 'peter' }
 };
 
-// صفحة الدخول
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'login.html'));
 });
 
-// تسجيل الدخول
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
   const user = Object.values(users).find(u => u.username === username && u.password === password);
@@ -40,14 +37,12 @@ app.post('/login', (req, res) => {
   }
 });
 
-// صفحة المحادثة
 app.get('/chat', (req, res) => {
     if (!req.session.userId) return res.redirect('/');
     const filePath = path.join(__dirname, 'messages', `${req.session.userId}.txt`);
     let content = '';
     if (fs.existsSync(filePath)) {
       content = fs.readFileSync(filePath, 'utf-8');
-      // إزالة كلمات المرور من العرض في الصفحة
       content = content.replace(/Password: .*\n/g, '');
     }
   
@@ -61,7 +56,6 @@ app.get('/chat', (req, res) => {
   });
   
 
-// إرسال رسالة
 app.post('/chat/send', (req, res) => {
   const userId = req.session.userId;
   const message = req.body.message;
@@ -72,7 +66,6 @@ app.post('/chat/send', (req, res) => {
   res.redirect('/chat');
 });
 
-// ⚠️ ثغرة IDOR: يمكن تغيير اسم الملف
 app.get('/chat/download', (req, res) => {
   const file = req.query.file;
   const filePath = path.join(__dirname, 'messages', file);
@@ -87,8 +80,8 @@ app.get('/logout', (req, res) => {
     if (err) {
       return res.status(500).send('Logout failed');
     }
-    res.clearCookie('connect.sid');
     res.redirect('/');
   });
 });
-app.listen(PORT, () => console.log(`💬 Chat app running at http://localhost:${PORT}`));
+const PORT = 1000;
+app.listen(PORT, () => console.log(` running at http://localhost:${PORT}`));
