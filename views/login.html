@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Chat</title>
+  <style>
+    * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     }
+     
+     body {
+       background-color: #fff5f7;
+       color: #555;
+       line-height: 1.6;
+     }
+     
+     .login-container {
+       max-width: 400px;
+       margin: 50px auto;
+       padding: 30px;
+       background: white;
+       border-radius: 15px;
+       box-shadow: 0 5px 20px rgba(255, 105, 180, 0.1);
+       border: 1px solid #ffebee;
+     }
+     
+     .login-container h2 {
+       text-align: center;
+       margin-bottom: 25px;
+       color: #ff6b9d;
+       font-weight: 600;
+     }
+     
+     .login-form input {
+       width: 100%;
+       padding: 14px 20px;
+       margin-bottom: 20px;
+       border: 1px solid #ffd6e7;
+       border-radius: 8px;
+       font-size: 16px;
+       transition: all 0.3s;
+       background-color: #fffafb;
+     }
+     
+     .login-form input:focus {
+       border-color: #ff6b9d;
+       outline: none;
+       box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+     }
+     
+     .login-form input::placeholder {
+       color: #d4a5b5;
+     }
+     
+     .login-form button {
+       width: 100%;
+       padding: 14px;
+       background: linear-gradient(to right, #ff6b9d, #ff8fab);
+       color: white;
+       border: none;
+       border-radius: 8px;
+       font-size: 16px;
+       font-weight: 600;
+       cursor: pointer;
+       transition: all 0.3s;
+       box-shadow: 0 4px 6px rgba(255, 107, 157, 0.2);
+     }
+     
+     .login-form button:hover {
+       transform: translateY(-2px);
+       box-shadow: 0 6px 10px rgba(255, 107, 157, 0.3);
+     }
+     </style>
+</head>
+<body>
+  <div class="login-container">
+  <h2> Login</h2>
+  <form  class="login-form" method="POST" action="/login">
+    <input name="username" placeholder="Username" required><br><br>
+    <input name="password" type="password" placeholder="Password" required><br><br>
+    <button type="submit">Login</button>
+  </form>
+</div>
+</body>
+</html>

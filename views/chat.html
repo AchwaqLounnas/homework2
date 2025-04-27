@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Chat</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff0f5;
+      color: #555;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  
+    h2 {
+      color: #ff69b4;
+      text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #ffb6c1;
+    }
+  
+    h3 {
+      color: #db7093;
+      margin: 20px 0 10px 0;
+    }
+  
+    pre {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      border-left: 4px solid #ff69b4;
+      box-shadow: 0 2px 5px rgba(255, 105, 180, 0.1);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-family: inherit;
+    }
+  
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ffb6c1;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #fffafb;
+      transition: all 0.3s;
+    }
+  
+    textarea:focus {
+      outline: none;
+      border-color: #ff69b4;
+      box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.2);
+    }
+  
+    button {
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 2px 5px rgba(255, 105, 180, 0.2);
+    }
+  
+    button:hover {
+      background-color: #ff1493;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(255, 20, 147, 0.3);
+    }
+  
+    a {
+      color: #ff69b4;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+  
+    a:hover {
+      color: #c71585;
+      text-decoration: underline;
+    }
+  
+    p {
+      margin-top: 20px;
+      padding-top: 10px;
+      border-top: 1px dashed #ffb6c1;
+    }
+  </style>
+</head>
+<body>
+  <h2> Welcome </h2>
+
+  <h3> Your Messages:</h3>
+  <pre>{{messages}}</pre>
+
+  <form method="POST" action="/chat/send">
+    <textarea name="message" placeholder="Write a message..." rows="4" cols="50"></textarea><br><br>
+    <button type="submit">Send</button>
+  </form>
+
+  <br>
+  <p> Download your chat file:
+    <a href="/chat/download?file={{file}}">Download Link</a>
+  </p>
+  <a href="/logout" style="color: #ff69b4; text-decoration: none; float: right;">Logout</a>
+</body>
+</html>
