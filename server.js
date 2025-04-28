@@ -21,7 +21,18 @@ const users = {
   1: { id: 1, username: 'carlos', password: 'secret' },
   2: { id: 2, username: 'wiener', password: 'peter' }
 };
-
+//const authMiddleware = (req, res, next) => {
+//  if (!req.session.userId) {
+//    return res.status(401).redirect('/login');
+//  }
+//  if (req.query.file) {
+//    const userFile = `${req.session.userId}.txt`;
+ //   if (req.query.file !== userFile) {
+//      return res.status(403).send('Unauthorized file access');
+//    }
+//  }
+//  next(); 
+//};
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'login.html'));
 });
@@ -67,7 +78,12 @@ app.post('/chat/send', (req, res) => {
 });
 
 app.get('/chat/download', (req, res) => {
+  //  if (!req.session.userId) return res.redirect('/login');
   const file = req.query.file;
+  //const userFile = `${req.session.userId}.txt`;
+  //  if (requestedFile !== userFile) {
+  //  return res.status(403).send('Unauthorized access');
+  //}
   const filePath = path.join(__dirname, 'messages', file);
   if (fs.existsSync(filePath)) {
     res.sendFile(filePath);
